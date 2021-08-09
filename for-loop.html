@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>VueJs</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    </head>
+    <body>
+        <!-- for-loop -->
+        <div id="app">
+            <ul>
+                <li v-for="(salarySheet,i) in salarySheets">{{ i+1 }}-{{ salarySheet.month }}-{{ salarySheet.salary }}
+                    <ul>
+                        <li  v-for="(value,key) in salarySheet.location">{{key}}:{{ value }}</li>
+                    </ul>
+                </li>
+            </ul><hr>
+
+            <ul>
+                <li v-for='(value,index) in list'>
+                    {{ index+1 }} {{ value }}
+                </li>
+            </ul>
+            <div class="form-group col-lg-6">
+                <input type="text" class="form-control" v-model='newFruit'><br>
+                <button class="btn btn-info" @click='add'>Add me</button>
+            </div>
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+        <script>
+            var abc = new Vue({
+                el:'#app',
+                data : {
+                    salarySheets :[
+                           {month: 'March', salary: 7000, location :{month: 'April', salary: 8000}},
+                           {month: 'Jan', salary: 5000, location :{month: 'Feb', salary: 6000}},
+                           {month: 'Sept', salary: 13000, location : {month: 'Oct', salary: 14000}},
+                       ],
+                    list:[
+                        fruit='apple',
+                        fruit='mango',
+                        fruit='orange',
+                        fruit='banana',
+                    ],
+                    newFruit:''    
+                },
+                methods:{
+                    add(){
+                        this.list.push(this.newFruit);
+                        this.newFruit='';
+                    }
+                }
+            })
+        </script>
+
+    </body>
+</html>

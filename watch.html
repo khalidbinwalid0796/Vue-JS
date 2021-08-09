@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title>VueJs</title>
+    </head>
+    <body>
+        <!-- watch used for validation -->
+        <!-- Also used when two input fields are changed simultaniously;every time identify the changes-->
+
+        <div id="app">
+            Mobile : <input type="text" v-model="mobile">
+            FirstName : <input type="text" v-model="name.firstName">
+            LastName : <input type="text" v-model="name.lastName"><br><br>
+            Kilomete to Meter convert
+            <input type="text" v-model="km">
+            <input type="text" v-model="m">
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+        <script>
+            var abc = new Vue({
+                el:'#app',
+                data : {
+                    mobile:"", //single property hole watch ar method name r property name same hote hobe
+                    name:{
+                        firstName:"",
+                        lastName:""           
+                    },
+                    km:0,
+                    m:0  
+
+                },
+                watch:{
+                    mobile(newValue,oldValue){
+                        console.log('New'+newValue+'\nold'+oldValue);
+                        if(isNaN(newValue)){
+                            alert('Enter Valid Value');
+                            this.mobile = oldValue;
+                        }
+                    },
+
+                /*  
+                    'name.firstName':function(newValue,oldValue){
+                    console.log('New'+newValue+'\nold'+oldValue);
+                    },
+                */
+                    name:{
+                        deep:true, //deep means name object ar sob property gulo tract korbe; array o hote pare
+                        handler(newValue,oldValue){
+                            console.log(newValue);
+                        }
+                        
+                    },
+                    km(value){
+                        this.km = value ;
+                        this.m = value * 1000;
+                    },
+                    m(value){
+                        this.km = value / 1000;
+                        this.m = value;
+                    }
+
+                    /*                
+                    km : function(val){
+                        this.km = val ;
+                        this.m = val * 1000;
+                    },
+                    m : function(val){
+                        this.km = val / 1000;
+                        this.m = val;
+                    }
+                    */
+                }
+            })
+        </script>
+
+    </body>
+</html>

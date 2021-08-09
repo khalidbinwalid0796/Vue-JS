@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>VueJs</title>
+    </head>
+    <body>
+
+        <div id="app">
+            My name is {{ name }} & age is {{ age }} <br><br>
+            <input type="text" v-model="name">
+            <input type="text" v-model="age">  
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+        <script>
+            var abc = new Vue({
+                el:'#app',
+                data:{
+                    name: 'sakib',
+                    age : 35
+                }
+            })
+        </script>
+
+    </body>
+</html>

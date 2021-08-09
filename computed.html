@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title>VueJs</title>
+    </head>
+    <body>
+    <!-- 
+        1. Computed property can be used to do quick calculation of properties.These calculation will be cached and will only update when needed.
+        2. computed property return existing data in different format.In cart to calculate total item, total quanty and search mechanism computed property used.
+        3. Existing data property theke notun kono property create kora lagle computed use kora hoy.
+     -->
+
+    <!--          
+        problem: methods property ar vitore amon kisu method thake jegulo auto call hoy vinno vinno data nie kaj korar sotte o ate performance kome jai ty bujhte hobe kothai computed property use korte hoy.
+        input field a value dear sathe sathe totalCount() call hosse abar remove() call korar sathe sathe
+        totalCount() call hosse.ai rokom hole app ar performance onek slow hoye jabe r ata solve korar jonno computed 
+    -->
+
+    <!-- 
+        Methods VS Computed :
+        1. computed use korle 1 bar ee call hoy mane jokhon property ar value change hoy na motamuti sekhanee computed use kora hoy, property ar value change korle tokhon abar call hoy.
+        2. methods use korle jotobar loop chalano hoy mane joto bare execute kora hoy totobar ee call hoy.action ar sathe sathe date set change hole methods use kora hoy jemon delete.
+    -->
+
+        <div id="app">
+            <input type="text" v-model="name">
+            <table>
+                <tr v-for = "(framework,i) in frameworks" :key="framework.name">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ framework.name }}</td>
+                    <td><button @click = "remove(i)">x</button></td>
+                </tr>     
+            </table>
+            <p>Total Data {{ totalCount() }}</p>
+            <p>Total Data {{ totalFrameworksCount }}</p>
+
+            <!-- Using computed getter & setter -->
+            Using computed getter & setter <input type="text" v-model='fullName'><br>
+            <h3>FirstName: {{ firstName }}</h3>
+            <h3>LastName: {{ lastName }}</h3>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+        <script>
+            var abc = new Vue({
+                el:'#app',
+                data : {
+                    name : '',
+                    frameworks:[
+                        {name:"laravel"},
+                        {name:"vue"},
+                        {name:"react"},
+                        {name:"angular"},
+                    ],
+                    firstName: 'Sakib',
+                    lastName: 'Hasan'
+
+                },
+                computed:{
+                    totalFrameworksCount(){
+                        console.log('not repeated execute');
+                        return this.frameworks.length;  
+                    },
+                    fullName:{
+                        //getter method
+                        get(){
+                            return this.firstName + ' ' + this.lastName;
+                        },
+                        //setter method
+                        set(value){
+                            var name = value.split(' ');
+                            //sakib al hasan; [0]=sakib, [1]=al, [3]=hasan //spilt working mechanism
+                            this.firstName = name[0];
+                            this.lastName = name[name.length - 1];
+                        }
+                    }
+                },
+
+            /*                
+                input field a value dear somoy computed property totalFrameworksCount() call hoy na but jokhon data ar value te change hoy suppose delete hosse tokhon computed property totalFrameworksCount() call hoy
+            */
+
+                methods:{
+                    remove(i){
+                        this.frameworks.splice(i,1);
+                    },
+                    totalCount(){
+                        console.log('repeated execute');
+                        return this.frameworks.length;
+                    }
+                }
+            })
+        </script>
+
+    </body>
+</html>

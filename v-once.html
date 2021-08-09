@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>VueJs</title>
+    </head>
+    <body>
+
+        <div id="app">
+            <h1 v-once>{{ name }}</h1> 
+            <h1>{{ myName() }}</h1>   
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+        <script>
+            var abc = new Vue({
+                el:'#app',
+                data:{
+                    name: 'sakib'
+                },
+                methods:{
+                    myName(){
+                        return this.name = `Tamim`
+                    }
+                }
+            })
+        </script>
+
+    </body>
+</html>

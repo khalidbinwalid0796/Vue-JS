@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+
+<!--
+    vue 2 support data object, new Vue({}), el
+    vue 3 support data function, Vue.createApp({}), mount
+
+-->
+    <body>
+        <div class="container">
+            <div id="app">
+                <h1>{{ name }}Vue JS</h1>
+                <!-- First -->
+                <h1>{{ message }}</h1>      
+                <!-- Second -->
+                <h1 :class='className'>{{ message }}</h1>     
+                <h1 :class="[isActive ? 'alert alert-success':'alert alert-danger' ]">{{ message }}</h1>     
+                <!-- Third -->
+                <h2 v-if='show'>Third Element</h2>
+                <!-- Fourth -->
+                <ol v-show='visible'>
+                    <li v-for='list in lists'>{{ list }}</li>
+                </ol>
+                <!-- Fifth -->
+
+            <!--            
+                <ul>
+                    <li v-for='list in lists1'>{{ list.social }}</li>
+                </ul>
+             -->
+                <!-- Sixth -->
+                <input type="text" v-model='message' class="form-control"><br>
+                <!-- Seventh -->
+                <button @click='enablelist'>Show Lists</button>
+            </div>
+        </div>
+        <!-- vue 2 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+        <!-- vue 3 -->
+        <!-- <script src="https://unpkg.com/vue@3.1.5/dist/vue.global.js"></script> -->
+        <!-- vue 2 -->
+        
+                
+        <script>
+            new Vue({
+                el : '#app',
+                data : {
+                    name : 'Welcome to ',
+                    message : 'This is Vue Series',
+                    className : 'alert alert-danger',
+                    isActive : false,
+                    show : true,
+                    lists : ['Sarthak','Ankur','Bitfumes','Facebook'],
+                    lists1 : [
+                                {name:'Sarthak'},
+                                {name:'Ankur'},
+                                {name:'Bitfumes'},
+                                {social:'Facebook'}
+                            ],
+                    visible: false
+                },
+                methods:{
+                    enablelist(){
+                        return this.visible=true;
+                    }
+                }
+            });
+        </script>
+
+        <!-- vue 3 -->
+    
+<!--          <script>
+            const app = Vue.createApp({
+                data(){
+                    return {
+                        name : 'Welcome to '
+                    }
+                }
+            });
+
+            app.mount('#app');
+        </script>  -->
+    
+
+        <!-- vue 3 using data arrow function & not require return-->
+    <!--
+         <script>
+            const app = Vue.createApp({
+                data:()=>({
+                    name : 'Welcome to '
+                })
+            });
+
+            app.mount('#app');
+        </script> 
+    -->
+
+    </body>
+</html>

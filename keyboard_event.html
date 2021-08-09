@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>VueJs</title>
+    </head>
+    <body>
+        <!-- keypress, keyup, keydown -->
+        <div id="app">
+            <input type="text" @keypress="showValue">  
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+        <script>
+            var abc = new Vue({
+                el:'#app',
+                methods:{
+                    showValue(event){
+                        console.log(event.key);
+                    }
+                }
+            })
+        </script>
+
+    </body>
+</html>
